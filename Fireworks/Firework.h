@@ -20,8 +20,9 @@ public:
   void addTrail(sf::Vector2f position);
   
   std::list<std::pair<sf::Vector2f, sf::Time>> trails;
-  int trailMaxLenght = 10;
-  sf::Time trailMinTime = sf::seconds(0.2f);
+  int trailMaxLenght         = 15;
+  sf::Time trailMinTime      = sf::seconds(0.1f);
+  sf::Time previousTrailTime = sf::Time::Zero;
 
   sf::CircleShape shape;
 

@@ -34,10 +34,10 @@ void Firework::draw(sf::RenderTarget & target, sf::RenderStates states) const
 
   for (const auto &trail : trails) {
     i++;
-    sf::Vector2f trailPosition =    trail.first;
+    sf::Vector2f trailPosition = trail.first;
 
-    trailColor = color_ - sf::Color(0, 0, 0, 255 * i / trailMaxLenght);
-    sfLine line(startTrailPosition, trailPosition, trailColor, maxThickness * (trailMaxLenght - i) / trailMaxLenght);
+    trailColor = color_ - sf::Color(0, 0, 0, 255 * i / trails.size());
+    sfLine line(startTrailPosition, trailPosition, trailColor, maxThickness * (trails.size() - i) / trails.size());
     target.draw(line);
 
     startTrailPosition = trailPosition;
