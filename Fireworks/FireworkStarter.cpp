@@ -4,8 +4,8 @@
 #include <math.h>
 
 
-FireworkStarter::FireworkStarter(std::list<Object*> &objectPool, sf::RenderWindow &window, float x, float y)
-  : Firework(window, x, y), objectPool_(objectPool)
+FireworkStarter::FireworkStarter(std::list<Object*> &objectPool, sf::RenderWindow &window, float x, float y, Notify *notify = nullptr)
+  : Firework(window, x, y), objectPool_(objectPool), notify_(notify)
 {
 
   startPosition = { x, static_cast<float>(getWindow().getSize().y) };
@@ -65,4 +65,6 @@ void FireworkStarter::spawnFireworks()
 
     }
   }
+
+  if (notify_) { notify_->notify(color, sf::seconds(timeToLiveInSeconds)); }
 }
