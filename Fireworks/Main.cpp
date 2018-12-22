@@ -19,6 +19,7 @@ std::list<Object*> objectPool;
 sf::Texture texture;
 sf::Sprite spriteBackground;
 sf::Sprite spriteMan;
+sf::Sprite spriteManLit;
 Cloud *clouds[4];
 
 
@@ -31,12 +32,17 @@ void init(sf::RenderWindow &window)
   texture.loadFromMemory(spritesData, sizeof(spritesData));
 
   spriteBackground.setTexture(texture);
-  spriteBackground.setTextureRect(sf::IntRect(0, 536, 1200, 800));
+  spriteBackground.setTextureRect(sf::IntRect(0, 439, 1200, 800));
 
   spriteMan.setTexture(texture);
-  spriteMan.setTextureRect(sf::IntRect(0, 439, 1200, 96));
+  spriteMan.setTextureRect(sf::IntRect(0, 1240, 1200, 96));
   spriteMan.setOrigin(0, 96);
   spriteMan.setPosition(0, mainWindowHeight);
+
+  spriteManLit.setTexture(texture);
+  spriteManLit.setTextureRect(sf::IntRect(0, 1570, 152, 86));
+  spriteManLit.setOrigin(0, 96);
+  spriteManLit.setPosition(0, mainWindowHeight);
 
   clouds[0] = new Cloud(window, -1400, -50);
   clouds[0]->sprite.setTexture(texture);
