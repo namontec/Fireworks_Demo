@@ -9,6 +9,7 @@
 #include "FireworkStarter.h"
 #include "Cloud.h"
 #include "sprites.png.h"
+#include "ManLight.h"
 
 
 const int mainWindowWidth{ 1200 };
@@ -20,6 +21,7 @@ sf::Texture texture;
 sf::Sprite spriteBackground;
 sf::Sprite spriteMan;
 sf::Sprite spriteManLit;
+ManLight sittingMan(spriteMan, spriteManLit);
 Cloud *clouds[4];
 
 
@@ -31,6 +33,7 @@ void init(sf::RenderWindow &window)
 
   texture.loadFromMemory(spritesData, sizeof(spritesData));
 
+
   spriteBackground.setTexture(texture);
   spriteBackground.setTextureRect(sf::IntRect(0, 439, 1200, 800));
 
@@ -41,8 +44,8 @@ void init(sf::RenderWindow &window)
 
   spriteManLit.setTexture(texture);
   spriteManLit.setTextureRect(sf::IntRect(0, 1570, 152, 86));
-  spriteManLit.setOrigin(0, 96);
-  spriteManLit.setPosition(0, mainWindowHeight);
+  spriteManLit.setOrigin(0, 97);
+  spriteManLit.setPosition(501, mainWindowHeight);
 
   clouds[0] = new Cloud(window, -1400, -50);
   clouds[0]->sprite.setTexture(texture);
@@ -151,7 +154,7 @@ int main()
     float deltaTime = elapsed.asSeconds();
     update(deltaTime);
 
-    window.draw(spriteMan);
+    window.draw(sittingMan);
 
     window.display();
   }

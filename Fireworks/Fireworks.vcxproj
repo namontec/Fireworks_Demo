@@ -156,6 +156,7 @@
     <ClInclude Include="Cloud.h" />
     <ClInclude Include="Firework.h" />
     <ClInclude Include="FireworkStarter.h" />
+    <ClInclude Include="ManLight.h" />
     <ClInclude Include="Object.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="sfLine.h" />
@@ -167,6 +168,7 @@
     <ClCompile Include="Firework.cpp" />
     <ClCompile Include="FireworkStarter.cpp" />
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="ManLight.cpp" />
     <ClCompile Include="Object.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>

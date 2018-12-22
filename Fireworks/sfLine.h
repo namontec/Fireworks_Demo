@@ -1,6 +1,6 @@
 #pragma once
 #include <SFML\Graphics.hpp>
-
+#include "Object.h"
 // https://github.com/SFML/SFML/wiki/Source:-Line-segment-with-thickness
 
 class sfLine : public sf::Drawable
