@@ -133,7 +133,7 @@ int main()
       case(sf::Event::MouseButtonPressed): {
         float x = (float)event.mouseButton.x;
         float y = (float)event.mouseButton.y;
-        FireworkStarter *fireworkStarter = new FireworkStarter(objectPool, window, x, y);
+        FireworkStarter *fireworkStarter = new FireworkStarter(objectPool, window, x, y, &sittingMan);
         objectPool.push_back(fireworkStarter);
         break;
       }
@@ -154,6 +154,7 @@ int main()
     float deltaTime = elapsed.asSeconds();
     update(deltaTime);
 
+    sittingMan.update();
     window.draw(sittingMan);
 
     window.display();

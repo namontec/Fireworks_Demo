@@ -4,7 +4,7 @@
 #include <math.h>
 
 
-FireworkStarter::FireworkStarter(std::list<Object*> &objectPool, sf::RenderWindow &window, float x, float y, Notify *notify = nullptr)
+FireworkStarter::FireworkStarter(std::list<Object*> &objectPool, sf::RenderWindow &window, float x, float y, Notify *notify)
   : Firework(window, x, y), objectPool_(objectPool), notify_(notify)
 {
 
@@ -66,5 +66,6 @@ void FireworkStarter::spawnFireworks()
     }
   }
 
+  //Make contour lighting to watchman
   if (notify_) { notify_->notify(color, sf::seconds(timeToLiveInSeconds)); }
 }
