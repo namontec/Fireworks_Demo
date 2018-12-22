@@ -122,8 +122,8 @@ int main()
         break;
 
       case(sf::Event::MouseButtonPressed): {
-        float x = event.mouseButton.x;
-        float y = event.mouseButton.y;
+        float x = (float)event.mouseButton.x;
+        float y = (float)event.mouseButton.y;
         FireworkStarter *fireworkStarter = new FireworkStarter(objectPool, window, x, y);
         objectPool.push_back(fireworkStarter);
         break;

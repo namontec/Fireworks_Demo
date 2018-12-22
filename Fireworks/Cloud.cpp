@@ -24,10 +24,10 @@ void Cloud::setPosition(sf::Vector2f position)
   Object::offscreenPosition result = checkOffscreenPosition(position);
 
   if (result != Object::offscreenPosition::Inside) {
-    float windowWidth  = getWindow().getSize().x;
-    float windowHeight = getWindow().getSize().y;
-    float spriteWidth  = sprite.getGlobalBounds().width;
-    float spriteHeight = sprite.getGlobalBounds().height;
+    float windowWidth  = (float)getWindow().getSize().x;
+    float windowHeight = (float)getWindow().getSize().y;
+    float spriteWidth  = (float)sprite.getGlobalBounds().width;
+    float spriteHeight = (float)sprite.getGlobalBounds().height;
 
     //if it is so, move it to the other side of the screen
     if (result == Object::offscreenPosition::BehindLeft)
@@ -46,15 +46,15 @@ void Cloud::setPosition(sf::Vector2f position)
 
 Object::offscreenPosition Cloud::checkOffscreenPosition(sf::Vector2f position)
 {
-  float windowWidth  = getWindow().getSize().x;
-  float windowHeight = getWindow().getSize().y;
-  float spriteWidth  = sprite.getGlobalBounds().width;
-  float spriteHeight = sprite.getGlobalBounds().height;
+  float windowWidth  = (float)getWindow().getSize().x;
+  float windowHeight = (float)getWindow().getSize().y;
+  float spriteWidth  = (float)sprite.getGlobalBounds().width;
+  float spriteHeight = (float)sprite.getGlobalBounds().height;
   
   bool isAbove       = (position.y + spriteHeight) < 0;
-  bool isBelow       = position.y  > windowHeight;
+  bool isBelow       =  position.y > windowHeight;
   bool isBehindLeft  = (position.x + spriteWidth)  < 0;
-  bool isBehindRight = position.x  > windowWidth;
+  bool isBehindRight =  position.x > windowWidth;
 
   if      (isBehindLeft)  return Object::offscreenPosition::BehindLeft;
   else if (isBehindRight) return Object::offscreenPosition::BehindRight;

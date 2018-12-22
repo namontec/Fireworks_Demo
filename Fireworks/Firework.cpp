@@ -56,7 +56,7 @@ void Firework::update(float deltaTime)
     sf::Time elapsed       = timer_.getElapsedTime();
 
     bool timeToDie         = (elapsed > timeToLive_);
-    bool trailsDisappeared = (trails.size() == 0);
+    bool trailsDisappeared = (trails.empty());
     if (timeToDie && trailsDisappeared) { destroyObject(); }
   }
 }
@@ -98,14 +98,14 @@ void Firework::addTrail(sf::Vector2f position)
 
       bool timeToDie = (elapsed > timeToLive_);
       if (timeToDie) {
-        if (trails.size() > 0) { trails.pop_back(); }
+        if (!trails.empty()) { trails.pop_back(); }
         return;
       }
     }
 
     trails.push_front({ position, elapsed });
 
-    bool trailReachedMaxSize = trails.size() > trailMaxLenght;
+    bool trailReachedMaxSize = trails.size() > (unsigned)trailMaxLenght;
     if (trailReachedMaxSize) { trails.pop_back(); }
   }
 }
