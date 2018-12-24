@@ -43,7 +43,7 @@ void init(sf::RenderWindow &window)
   spriteMan.setPosition(0, mainWindowHeight);
 
   spriteManLit.setTexture(texture);
-  spriteManLit.setTextureRect(sf::IntRect(0, 1570, 154, 89));
+  spriteManLit.setTextureRect(sf::IntRect(1, 1570, 154, 89));
   spriteManLit.setOrigin(0, 97);
   spriteManLit.setPosition(501, mainWindowHeight);
 

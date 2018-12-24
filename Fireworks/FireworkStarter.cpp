@@ -11,8 +11,8 @@ FireworkStarter::FireworkStarter(std::list<Object*> &objectPool, sf::RenderWindo
   spawnPosition = { x, y };
 
   setPosition(startPosition);
-  setAcceleration({ 0, -400 });
-  setGravity({ 0, 0 });
+  setAcceleration({ 0, -600 });
+  setGravity({ 0, 0.25 });
 }
 
 
@@ -36,9 +36,9 @@ void FireworkStarter::spawnFireworks()
 {
   Tools tools;
   float pi = 3.1415926535f;
-  float numberOfFireworks = 40;//(float)tools.random(25, 50);
-  float acceleration = 200;//(float)tools.random(200, 400);
-  int   wavesOfFireworks = 1;// tools.random(1, 6);
+  float numberOfFireworks   = (float)tools.random(25, 50);
+  float acceleration        = (float)tools.random(50, 200);
+  int   wavesOfFireworks    = tools.random(1, 6);
   float gravitation         = 0.25f;
   float timeToLiveInSeconds = 2.5f;
   int   accVariant = 10;
@@ -53,15 +53,13 @@ void FireworkStarter::spawnFireworks()
 
   for (int i = 1; i <= numberOfFireworks; i++) {
     for (int n = 1; n <= wavesOfFireworks; n++) {
-      angle = 2 * pi * i / numberOfFireworks;// +((float)tools.random(-1, 1) / 5);
+      angle = 2 * pi * i / numberOfFireworks + ((float)tools.random(-1, 1) / 5);
       direction = { cos(angle), sin(angle) };
       
       firework = new Firework(getWindow(), spawnPosition.x, spawnPosition.y, color, sf::seconds(timeToLiveInSeconds));
 
-      firework->setAcceleration({ direction.x * acceleration,
-                                  direction.y * acceleration });
-      //firework->setAcceleration({ direction.x * acceleration / std::sqrtf ((float)n) + ((float)tools.random(-accVariant, accVariant)) ,
-      //                            direction.y * acceleration / std::sqrtf ((float)n) + ((float)tools.random(-accVariant, accVariant)) });
+      firework->setAcceleration({ direction.x * acceleration / std::sqrtf ((float)n) + ((float)tools.random(-accVariant, accVariant)) ,
+                                  direction.y * acceleration / std::sqrtf ((float)n) + ((float)tools.random(-accVariant, accVariant)) });
       firework->setGravity({ 0 , gravitation });
       objectPool_.push_back(firework);
 
