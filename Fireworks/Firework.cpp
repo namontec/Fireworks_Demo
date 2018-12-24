@@ -21,7 +21,6 @@ Firework::~Firework()
 }
 
 
-
 void Firework::draw(sf::RenderTarget & target, sf::RenderStates states) const
 {
   sf::Time elapsed = timer_.getElapsedTime();
@@ -31,25 +30,28 @@ void Firework::draw(sf::RenderTarget & target, sf::RenderStates states) const
   sf::Color trailColor;
   float maxThickness = 4;
   float i = 0;
+  float trailSize = trails.size();
 
   for (const auto &trail : trails) {
     i++;
     sf::Vector2f trailPosition = trail.first;
 
-    trailColor = color_ - sf::Color(0, 0, 0, (sf::Uint8)(255 * i / trails.size()));
-    sfLine line(startTrailPosition, trailPosition, trailColor, maxThickness * (trails.size() - i) / trails.size());
+    trailColor = color_ - sf::Color(0, 0, 0, (sf::Uint8)(255 * i / trailSize));
+    sfLine line(startTrailPosition, trailPosition, trailColor, maxThickness * (trailSize - i) / trailSize);
     target.draw(line);
 
     startTrailPosition = trailPosition;
   }
 
-  //Drail trail head
+  //Draw trail head
   target.draw(shape);
 }
 
 void Firework::update(float deltaTime)
 {
   Object::update(deltaTime);
+
+  addTrail(getPosition());
 
   bool timeToLiveIsSet     = (timeToLive_ != sf::Time::Zero);
   if (timeToLiveIsSet) {
@@ -66,8 +68,6 @@ void Firework::setPosition(sf::Vector2f position)
 {
   Object::setPosition(position);
   shape.setPosition(position);
-
-  addTrail(position);
 }
 
 void Firework::setColor(sf::Color color)

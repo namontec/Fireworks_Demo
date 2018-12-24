@@ -12,6 +12,36 @@ Cloud::~Cloud()
 }
 
 
+void Cloud::update(float deltaTime)
+{
+  Object::update(deltaTime);
+
+  sf::Vector2f position = getPosition();
+
+  //check if cloud is outside main window
+  Object::offscreenPosition result = checkOffscreenPosition(position);
+
+  if (result != Object::offscreenPosition::Inside) {
+    float windowWidth = (float)getWindow().getSize().x;
+    float windowHeight = (float)getWindow().getSize().y;
+    float spriteWidth = (float)sprite.getGlobalBounds().width;
+    float spriteHeight = (float)sprite.getGlobalBounds().height;
+
+    //if it is so, move it to the other side of the screen
+    if (result == Object::offscreenPosition::BehindLeft)
+      position.x = position.x + spriteWidth + windowWidth;
+    else if (result == Object::offscreenPosition::BehindRight)
+      position.x = position.x - spriteWidth - windowWidth;
+    else if (result == Object::offscreenPosition::Above)
+      position.y = position.y + spriteHeight + windowHeight;
+    else if (result == Object::offscreenPosition::Below)
+      position.y = position.y - spriteHeight - windowHeight;
+
+    setPosition(position);
+  }
+
+}
+
 void Cloud::draw(sf::RenderTarget & target, sf::RenderStates states) const
 {
   target.draw(sprite);
@@ -20,26 +50,6 @@ void Cloud::draw(sf::RenderTarget & target, sf::RenderStates states) const
 
 void Cloud::setPosition(sf::Vector2f position)
 {
-  //check if cloud is outside main window
-  Object::offscreenPosition result = checkOffscreenPosition(position);
-
-  if (result != Object::offscreenPosition::Inside) {
-    float windowWidth  = (float)getWindow().getSize().x;
-    float windowHeight = (float)getWindow().getSize().y;
-    float spriteWidth  = (float)sprite.getGlobalBounds().width;
-    float spriteHeight = (float)sprite.getGlobalBounds().height;
-
-    //if it is so, move it to the other side of the screen
-    if (result == Object::offscreenPosition::BehindLeft)
-      position.x = position.x + spriteWidth  + windowWidth;
-    else if (result == Object::offscreenPosition::BehindRight)
-      position.x = position.x - spriteWidth  - windowWidth;
-    else if (result == Object::offscreenPosition::Above)
-      position.y = position.y + spriteHeight + windowHeight;
-    else if (result == Object::offscreenPosition::Below)
-      position.y = position.y - spriteHeight - windowHeight;
-  }
-
   Object::setPosition(position);
   sprite.setPosition(position);
 }

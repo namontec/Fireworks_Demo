@@ -9,7 +9,7 @@
 #include "FireworkStarter.h"
 #include "Cloud.h"
 #include "sprites.png.h"
-#include "ManLight.h"
+#include "Man.h"
 
 
 const int mainWindowWidth{ 1200 };
@@ -18,11 +18,11 @@ const int mainWindowHeight{ 800 };
 
 std::list<Object*> objectPool;
 sf::Texture texture;
-sf::Sprite spriteBackground;
-sf::Sprite spriteMan;
-sf::Sprite spriteManLit;
-ManLight sittingMan(spriteMan, spriteManLit);
-Cloud *clouds[4];
+sf::Sprite  spriteBackground;
+sf::Sprite  spriteMan;
+sf::Sprite  spriteManLit;
+Man         sittingMan(spriteMan, spriteManLit);
+Cloud       *clouds[4];
 
 
 
@@ -55,7 +55,7 @@ void init(sf::RenderWindow &window)
   clouds[1] = new Cloud(window, -800, 50);
   clouds[1]->sprite.setTexture(texture);
   clouds[1]->sprite.setTextureRect(sf::IntRect(0, 0, 1844, 438));
-  clouds[1]->setAcceleration({ 20, 0 });
+  clouds[1]->setAcceleration({ 10, 0 });
   clouds[1]->sprite.setColor(sf::Color(255, 255, 255, 50));
 
   clouds[2] = new Cloud(window, 600, 300);
@@ -73,7 +73,6 @@ void init(sf::RenderWindow &window)
   objectPool.push_back(clouds[3]);
   objectPool.push_back(clouds[2]);
   objectPool.push_back(clouds[0]);
-
 }
 
 
@@ -134,6 +133,7 @@ int main()
         float x = (float)event.mouseButton.x;
         float y = (float)event.mouseButton.y;
         FireworkStarter *fireworkStarter = new FireworkStarter(objectPool, window, x, y, &sittingMan);
+
         objectPool.push_back(fireworkStarter);
         break;
       }
@@ -146,13 +146,15 @@ int main()
     window.clear(sf::Color::Red);
     window.draw(spriteBackground);
 
-    //Draw Objects
-    draw(window);
+ 
 
     //Update Objects
     sf::Time elapsed = clock.restart();
     float deltaTime = elapsed.asSeconds();
     update(deltaTime);
+
+    //Draw Objects
+    draw(window);
 
     sittingMan.update();
     window.draw(sittingMan);

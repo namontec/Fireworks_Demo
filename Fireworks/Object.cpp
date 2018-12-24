@@ -18,7 +18,7 @@ void Object::update(float deltaTime)
   velocity_ += acceleration_ + gravity_;
   acceleration_ = { 0, 0 };
 
-  setPosition (getPosition() + (velocity_ * deltaTime));
+  setPosition( position_ + (velocity_ * deltaTime) );
 }
 
 void Object::setPosition(sf::Vector2f position)
@@ -36,14 +36,29 @@ void Object::setAcceleration(sf::Vector2f acceleration)
   acceleration_ = acceleration;
 }
 
+sf::Vector2f Object::getAcceleration() const
+{
+  return acceleration_;
+}
+
 void Object::setVelocity(sf::Vector2f velocity)
 {
   velocity_ = velocity;
 }
 
+sf::Vector2f Object::getVelocity() const
+{
+  return velocity_;
+}
+
 void Object::setGravity(sf::Vector2f gravity)
 {
   gravity_ = gravity;
+}
+
+sf::Vector2f Object::getGravity() const
+{
+  return gravity_;
 }
 
 

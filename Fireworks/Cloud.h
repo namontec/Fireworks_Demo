@@ -8,8 +8,9 @@ public:
   Cloud(sf::RenderWindow &window, float x, float y);
   ~Cloud();
 
-  void draw(sf::RenderTarget & target, sf::RenderStates states) const override;
-  virtual void setPosition(sf::Vector2f position) override;
+  virtual void              update(float deltaTime);
+  void                      draw(sf::RenderTarget & target, sf::RenderStates states) const override;
+  virtual void              setPosition(sf::Vector2f position) override;
 
   Object::offscreenPosition checkOffscreenPosition(sf::Vector2f positon) override;
 

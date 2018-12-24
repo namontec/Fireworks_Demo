@@ -39,10 +39,10 @@
     <ClInclude Include="Tools.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="ManLight.h">
+    <ClInclude Include="Notify.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Notify.h">
+    <ClInclude Include="Man.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -71,10 +71,10 @@
     <ClCompile Include="Tools.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ManLight.cpp">
+    <ClCompile Include="Notify.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Notify.cpp">
+    <ClCompile Include="Man.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

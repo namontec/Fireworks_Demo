@@ -156,7 +156,7 @@
     <ClInclude Include="Cloud.h" />
     <ClInclude Include="Firework.h" />
     <ClInclude Include="FireworkStarter.h" />
-    <ClInclude Include="ManLight.h" />
+    <ClInclude Include="Man.h" />
     <ClInclude Include="Notify.h" />
     <ClInclude Include="Object.h" />
     <ClInclude Include="pch.h" />
@@ -169,7 +169,7 @@
     <ClCompile Include="Firework.cpp" />
     <ClCompile Include="FireworkStarter.cpp" />
     <ClCompile Include="Main.cpp" />
-    <ClCompile Include="ManLight.cpp" />
+    <ClCompile Include="Man.cpp" />
     <ClCompile Include="Notify.cpp" />
     <ClCompile Include="Object.cpp" />
     <ClCompile Include="pch.cpp">
