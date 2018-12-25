@@ -5,8 +5,8 @@
 class Cloud : public Object
 {
 public:
-  Cloud(sf::RenderWindow &window, float x, float y);
-  ~Cloud();
+                            Cloud(sf::RenderWindow &window, float x, float y);
+                            ~Cloud();
 
   virtual void              update(float deltaTime);
   void                      draw(sf::RenderTarget & target, sf::RenderStates states) const override;

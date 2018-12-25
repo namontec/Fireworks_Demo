@@ -40,7 +40,7 @@ void FireworkStarter::spawnFireworks()
   float acceleration        = (float)tools.random(50, 200);
   int   wavesOfFireworks    = tools.random(1, 6);
   float gravitation         = 0.25f;
-  float timeToLiveInSeconds = 2.5f;
+  float timeToLiveInSeconds = 2.0f;
   int   accVariant = 10;
   sf::Color color;
   sf::Vector2f direction;

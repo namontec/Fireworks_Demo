@@ -15,10 +15,14 @@ Object::~Object()
 
 void Object::update(float deltaTime)
 {
-  velocity_ += acceleration_ + gravity_;
+  velocity_ += acceleration_;
   acceleration_ = { 0, 0 };
 
-  setPosition( position_ + (velocity_ * deltaTime) );
+  accumulatedGravity_ += gravity_ * deltaTime;
+  
+  sf::Vector2f moveVector = velocity_ * deltaTime + accumulatedGravity_;
+
+  setPosition( position_ + moveVector );
 }
 
 void Object::setPosition(sf::Vector2f position)

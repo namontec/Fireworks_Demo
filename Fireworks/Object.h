@@ -33,9 +33,10 @@ private:
   sf::RenderWindow      &window_;
   bool                  isDestroyed_ = false;
 
-  sf::Vector2f          position_     { 0, 0 };
-  sf::Vector2f          acceleration_ { 0, 0 };
-  sf::Vector2f          velocity_     { 0, 0 };
-  sf::Vector2f          gravity_      { 0, 0 };
+  sf::Vector2f          position_           { 0, 0 };
+  sf::Vector2f          acceleration_       { 0, 0 };
+  sf::Vector2f          velocity_           { 0, 0 };
+  sf::Vector2f          gravity_            { 0, 0 };
+  sf::Vector2f          accumulatedGravity_ { 0, 0 };
 };
 
