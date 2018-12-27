@@ -92,6 +92,14 @@ void Firework::addTrail(sf::Vector2f position)
   if  (readyToAddTrail) {
     previousTrailTime = elapsed;
 
+    //Add new trail element
+    trails.push_front({ position, elapsed });
+
+    bool trailReachedMaxSize = trails.size() > (unsigned)trailMaxLenght;
+    if (trailReachedMaxSize)
+      trails.pop_back();
+
+
     //Stop growing tail if firework is ready to die
     bool timeToLiveIsSet = (timeToLive_ != sf::Time::Zero);
     if (timeToLiveIsSet) {
@@ -99,14 +107,10 @@ void Firework::addTrail(sf::Vector2f position)
       bool timeToDie = (elapsed > timeToLive_);
       if (timeToDie) {
         if (!trails.empty()) { trails.pop_back(); }
-        return;
+        if (!trails.empty()) { trails.pop_back(); }
       }
     }
 
-    trails.push_front({ position, elapsed });
-
-    bool trailReachedMaxSize = trails.size() > (unsigned)trailMaxLenght;
-    if (trailReachedMaxSize) { trails.pop_back(); }
   }
 }
 

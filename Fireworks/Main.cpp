@@ -16,13 +16,13 @@ const int mainWindowWidth{ 1200 };
 const int mainWindowHeight{ 800 };
 
 
-std::list<Object*> objectPool;
-sf::Texture texture;
-sf::Sprite  spriteBackground;
-sf::Sprite  spriteMan;
-sf::Sprite  spriteManLit;
-Man         sittingMan(spriteMan, spriteManLit);
-Cloud       *clouds[4];
+std::list<Object*>  objectPool;
+sf::Texture         texture;
+sf::Sprite          spriteBackground;
+sf::Sprite          spriteMan;
+sf::Sprite          spriteManLit;
+Man                 sittingMan(spriteMan, spriteManLit);
+Cloud*              clouds[4];
 
 
 

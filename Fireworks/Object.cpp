@@ -15,14 +15,26 @@ Object::~Object()
 
 void Object::update(float deltaTime)
 {
+  //if time has come - perfom fixedUpdate()
+  timeSinceLastFixedUpate += sf::seconds(deltaTime);
+
+  bool timeToFixedUpdate = timeSinceLastFixedUpate > fixedTimePerFrame;
+  if (timeToFixedUpdate) {
+    timeSinceLastFixedUpate -= fixedTimePerFrame;
+    fixedUpdate(fixedTimePerFrame.asSeconds());
+  }
+
+  //regular update()
   velocity_ += acceleration_;
   acceleration_ = { 0, 0 };
-
-  accumulatedGravity_ += gravity_ * deltaTime;
   
-  sf::Vector2f moveVector = velocity_ * deltaTime + accumulatedGravity_;
+  sf::Vector2f movement = velocity_ * deltaTime;
+  setPosition( position_ + movement );
+}
 
-  setPosition( position_ + moveVector );
+void Object::fixedUpdate(float fixedDeltaTime)
+{
+  velocity_ += gravity_;
 }
 
 void Object::setPosition(sf::Vector2f position)

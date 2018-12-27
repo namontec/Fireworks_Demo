@@ -9,7 +9,8 @@ public:
                         Object(sf::RenderWindow &window, float x, float y);
   virtual               ~Object();
 
-  virtual void          update(float deltaTime);
+  virtual void          update      (float deltaTime);
+  virtual void          fixedUpdate (float fixedDeltaTime);
 
   virtual void          setPosition(sf::Vector2f position);
   sf::Vector2f          getPosition() const;
@@ -38,5 +39,10 @@ private:
   sf::Vector2f          velocity_           { 0, 0 };
   sf::Vector2f          gravity_            { 0, 0 };
   sf::Vector2f          accumulatedGravity_ { 0, 0 };
+
+
+  //FixedUpdate time variables
+  const sf::Time        fixedTimePerFrame { sf::seconds(1.0f / 50.0f) };
+  sf::Time              timeSinceLastFixedUpate  { sf::Time::Zero };
 };
 

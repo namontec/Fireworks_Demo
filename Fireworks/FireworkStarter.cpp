@@ -12,7 +12,7 @@ FireworkStarter::FireworkStarter(std::list<Object*> &objectPool, sf::RenderWindo
 
   setPosition(startPosition);
   setAcceleration({ 0, -600 });
-  setGravity({ 0, 0.25 });
+  setGravity({ 0, 1 });
 }
 
 
@@ -39,7 +39,7 @@ void FireworkStarter::spawnFireworks()
   float numberOfFireworks   = (float)tools.random(25, 50);
   float acceleration        = (float)tools.random(50, 200);
   int   wavesOfFireworks    = tools.random(1, 6);
-  float gravitation         = 0.1f;
+  float gravitation         = 1.0f;
   float timeToLiveInSeconds = 2.2f;
   int   accVariant = 10;
   sf::Color color;
