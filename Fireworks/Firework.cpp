@@ -32,9 +32,8 @@ void Firework::draw(sf::RenderTarget & target, sf::RenderStates states) const
   float i = 0;
   float trailSize = trails.size();
 
-  for (const auto &trail : trails) {
+  for (const auto &trailPosition : trails) {
     i++;
-    sf::Vector2f trailPosition = trail.first;
 
     trailColor = color_ - sf::Color(0, 0, 0, (sf::Uint8)(255 * i / trailSize));
     sfLine line(startTrailPosition, trailPosition, trailColor, maxThickness * (trailSize - i) / trailSize);
@@ -93,7 +92,7 @@ void Firework::addTrail(sf::Vector2f position)
     previousTrailTime = elapsed;
 
     //Add new trail element
-    trails.push_front({ position, elapsed });
+    trails.push_front(position);
 
     bool trailReachedMaxSize = trails.size() > (unsigned)trailMaxLenght;
     if (trailReachedMaxSize)
