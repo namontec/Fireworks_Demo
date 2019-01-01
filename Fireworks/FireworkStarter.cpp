@@ -40,7 +40,7 @@ void FireworkStarter::spawnFireworks()
   float acceleration        = (float)tools.random(50, 200);
   int   wavesOfFireworks    = tools.random(1, 6);
   float gravitation         = 1.0f;
-  float timeToLiveInSeconds = 2.2f;
+  float timeToLiveInSeconds = 2.0f;
   int   accVariant = 10;
   sf::Color color;
   sf::Vector2f direction;
@@ -56,6 +56,7 @@ void FireworkStarter::spawnFireworks()
       angle = 2 * pi * i / numberOfFireworks + ((float)tools.random(-1, 1) / 5);
       direction = { cos(angle), sin(angle) };
       
+      timeToLiveInSeconds = 2.0f + (float)tools.random(-1, 1) / 10.0f;
       firework = new Firework(getWindow(), spawnPosition.x, spawnPosition.y, color, sf::seconds(timeToLiveInSeconds));
 
       firework->setAcceleration({ direction.x * acceleration / std::sqrtf ((float)n) + ((float)tools.random(-accVariant, accVariant)) ,
