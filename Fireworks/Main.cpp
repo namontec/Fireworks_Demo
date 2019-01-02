@@ -25,6 +25,10 @@ Man                 sittingMan(spriteMan, spriteManLit);
 Cloud*              clouds[4];
 
 
+//FixedUpdate time variables
+const sf::Time        fixedTimePerFrame{ sf::seconds(1.0f / 50.0f) };
+sf::Time              timeSinceLastFixedUpate{ sf::Time::Zero };
+
 
 void init(sf::RenderWindow &window)
 {
@@ -93,6 +97,17 @@ void update(float deltaTime)
   {
     for (auto p = objectPool.begin(); p != objectPool.end(); p++)
     {
+
+      //if time has come - perfom fixedUpdate()
+      timeSinceLastFixedUpate += sf::seconds(deltaTime);
+
+      bool timeToFixedUpdate = timeSinceLastFixedUpate > fixedTimePerFrame;
+      if (timeToFixedUpdate) {
+        timeSinceLastFixedUpate -= fixedTimePerFrame;
+        (*p)->fixedUpdate(fixedTimePerFrame.asSeconds());
+      }
+
+
       (*p)->update(deltaTime);
 
       bool objectIsDestroyed = (*p)->isDestroyed();

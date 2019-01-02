@@ -15,15 +15,6 @@ Object::~Object()
 
 void Object::update(float deltaTime)
 {
-  //if time has come - perfom fixedUpdate()
-  timeSinceLastFixedUpate += sf::seconds(deltaTime);
-
-  bool timeToFixedUpdate = timeSinceLastFixedUpate > fixedTimePerFrame;
-  if (timeToFixedUpdate) {
-    timeSinceLastFixedUpate -= fixedTimePerFrame;
-    fixedUpdate(fixedTimePerFrame.asSeconds());
-  }
-
   //regular update()
   velocity_ += acceleration_;
   acceleration_ = { 0, 0 };

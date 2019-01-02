@@ -40,9 +40,5 @@ private:
   sf::Vector2f          gravity_            { 0, 0 };
   sf::Vector2f          accumulatedGravity_ { 0, 0 };
 
-
-  //FixedUpdate time variables
-  const sf::Time        fixedTimePerFrame { sf::seconds(1.0f / 50.0f) };
-  sf::Time              timeSinceLastFixedUpate  { sf::Time::Zero };
 };
 
