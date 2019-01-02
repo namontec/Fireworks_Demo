@@ -100,8 +100,8 @@ void update(float deltaTime)
       //if time has come - perfom fixedUpdate()
       timeSinceLastFixedUpate += sf::seconds(deltaTime);
 
-      bool timeToFixedUpdate = timeSinceLastFixedUpate > fixedTimePerFrame;
-      if (timeToFixedUpdate) {
+      //bool timeToFixedUpdate = timeSinceLastFixedUpate > fixedTimePerFrame;
+      while (timeSinceLastFixedUpate > fixedTimePerFrame) {
         timeSinceLastFixedUpate -= fixedTimePerFrame;
         (*p)->fixedUpdate(fixedTimePerFrame.asSeconds());
       }
