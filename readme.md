@@ -22,7 +22,7 @@ Fireworks.zip (http://nmeo.ru/storage/app/media/files/Fireworks.zip)
 
 1. Установить библиотеку sfml с помощью пакетного менеджера vcpkg
 
-`pkg install sfml`
+`vcpkg install sfml`
 
 
 
