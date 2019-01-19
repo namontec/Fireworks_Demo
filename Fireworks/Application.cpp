@@ -7,59 +7,17 @@ Application::Application(int width, int height)
 {
 }
 
+
 void Application::run()
 {
-  sf::Clock clock;
   //sf::RenderWindow window(sf::VideoMode(mainWindowWidth_, mainWindowHeight_), "Fireworks - by Victor Potasyev", sf::Style::Close);
   window_.create(sf::VideoMode(mainWindowWidth_, mainWindowHeight_), "Fireworks - by Victor Potasyev", sf::Style::Close);
   
-
   //Initialization: textures, sprites, objects
   init();
 
   //Main loop
-  while (window_.isOpen())
-  {
-    sf::Event event;
-    while (window_.pollEvent(event))
-    {
-      switch (event.type)
-      {
-      case(sf::Event::Closed):
-        window_.close();
-        break;
-
-      case(sf::Event::MouseButtonPressed): {
-        float x = (float)event.mouseButton.x;
-        float y = (float)event.mouseButton.y;
-        FireworkStarter *fireworkStarter = new FireworkStarter(objectPool, window_, x, y, &sittingMan);
-
-        objectPool.push_back(fireworkStarter);
-        break;
-      }
-
-      default:
-        break;
-      }
-    }
-
-    window_.clear(sf::Color::Red);
-    window_.draw(spriteBackground);
-
-
-    //Update Objects
-    sf::Time elapsed = clock.restart();
-    float deltaTime = elapsed.asSeconds();
-    update(deltaTime);
-
-    //Draw Objects
-    draw();
-
-    sittingMan.update();
-    window_.draw(sittingMan);
-
-    window_.display();
-  }
+  mainLoop();
 
 }
 
@@ -83,6 +41,8 @@ void Application::init()
   spriteManLit.setTextureRect(sf::IntRect(1, 1570, 154, 89));
   spriteManLit.setOrigin(0, 97);
   spriteManLit.setPosition(501, mainWindowHeight_);
+
+  sittingMan = new Man(spriteMan, spriteManLit);
 
   clouds[0] = new Cloud(window_, -1400, -50);
   clouds[0]->sprite.setTexture(texture);
@@ -152,6 +112,53 @@ void Application::draw()
     for (auto object : objectPool) {
       window_.draw(*object);
     }
+  }
+}
+
+void Application::mainLoop()
+{
+  while (window_.isOpen())
+  {
+    sf::Event event;
+    while (window_.pollEvent(event))
+    {
+      switch (event.type)
+      {
+      case(sf::Event::Closed):
+        window_.close();
+        break;
+
+      case(sf::Event::MouseButtonPressed): {
+        float x = (float)event.mouseButton.x;
+        float y = (float)event.mouseButton.y;
+        FireworkStarter *fireworkStarter = new FireworkStarter(objectPool, window_, x, y, sittingMan);
+
+        objectPool.push_back(fireworkStarter);
+        break;
+      }
+
+      default:
+        break;
+      }
+    }
+
+    window_.clear(sf::Color::Red);
+    window_.draw(spriteBackground);
+
+
+    //Update Objects
+    sf::Time elapsed = clock.restart();
+    float deltaTime = elapsed.asSeconds();
+    update(deltaTime);
+
+    //Draw Objects
+    draw();
+
+    //sittingMan.update();
+    
+    window_.draw(*sittingMan);
+
+    window_.display();
   }
 }
 

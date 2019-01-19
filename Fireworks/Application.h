@@ -23,6 +23,7 @@ private:
   void init();
   void update(float deltaTime);
   void draw();
+  void mainLoop();
 
 
 
@@ -36,8 +37,10 @@ private:
   sf::Sprite          spriteBackground;
   sf::Sprite          spriteMan;
   sf::Sprite          spriteManLit;
-  Man                 sittingMan(spriteMan, spriteManLit);
+  Man*                sittingMan;
   Cloud*              clouds[4];
+
+  sf::Clock clock;
 
   //FixedUpdate time variables
   const sf::Time        fixedTimePerFrame{ sf::seconds(1.0f / 50.0f) };
