@@ -165,4 +165,5 @@ void Application::mainLoop()
 
 Application::~Application()
 {
+  delete sittingMan;
 }
